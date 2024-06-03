@@ -28,8 +28,12 @@ jobs:
       - name: Print Node.js version
         run: node --version
       
-      - name: List contents of node_modules
-        run: ls -l node_modules
+      - name: Check Cypress binary permissions
+        run: ls -l node_modules/.bin/cypress
+
+      - name: Print Cypress version
+        run: ./node_modules/.bin/cypress --version
+      
 
       - name: Print Cypress version
         run: npx cypress --version
