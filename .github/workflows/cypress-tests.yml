@@ -22,19 +22,31 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ~/.cache
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install Cypress
         run: npm install cypress@^13.10.0
 
-      - name: Grant execute permission to Cypress binary
-        run: chmod +x node_modules/.bin/cypress
+      - name: Print Cypress binary directory
+        run: ls -l ~/.cache/Cypress
+
+      - name: Ensure execute permission for Cypress binary
+        run: chmod +x ~/.cache/Cypress/*/Cypress
 
       - name: Print Node.js version
         run: node --version
 
       - name: Print Cypress version
-        run: ./node_modules/.bin/cypress --version
+        run: ~/.cache/Cypress/*/Cypress --version
 
       - name: Run Cypress tests
-        run: ./node_modules/.bin/cypress run
+        run: ~/.cache/Cypress/*/Cypress run
+
 
 
