@@ -34,6 +34,9 @@ jobs:
       - name: Install Cypress
         run: npm install cypress@^13.10.0
 
+      - name: Ensure execute permission for Cypress binary
+        run: chmod +x $(npm bin)/cypress
+
       - name: Print Node.js version
         run: node --version
 
@@ -42,6 +45,7 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
+
 
 
 
