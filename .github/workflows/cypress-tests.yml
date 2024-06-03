@@ -27,6 +27,9 @@ jobs:
 
       - name: Print Node.js version
         run: node --version
+      
+      - name: List contents of node_modules
+        run: ls -l node_modules
 
       - name: Print Cypress version
         run: npx cypress --version
