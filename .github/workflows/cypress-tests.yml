@@ -28,25 +28,21 @@ jobs:
           path: |
             ~/.npm
             ~/.cache
+            node_modules
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Cypress
         run: npm install cypress@^13.10.0
 
-      - name: Print Cypress binary directory
-        run: ls -l ~/.cache/Cypress
-
-      - name: Ensure execute permission for Cypress binary
-        run: chmod +x ~/.cache/Cypress/*/Cypress
-
       - name: Print Node.js version
         run: node --version
 
       - name: Print Cypress version
-        run: ~/.cache/Cypress/*/Cypress --version
+        run: npx cypress --version
 
       - name: Run Cypress tests
-        run: ~/.cache/Cypress/*/Cypress run
+        run: npx cypress run
+
 
 
 
