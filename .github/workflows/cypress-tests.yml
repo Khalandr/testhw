@@ -1,15 +1,25 @@
 name: End-to-end tests
-on: push
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        spec_file: ['spec.cy.js', 'spec1.cy.js', 'spec2.cy.js']
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      # Install npm dependencies, cache them correctly
-      # and run all Cypress tests
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        with:
+          spec: cypress/integration/${{ matrix.spec_file }}
 
 
 
