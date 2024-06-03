@@ -22,8 +22,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install Cypress
+        run: npm install cypress@^13.10.0
 
       - name: Print Node.js version
         run: node --version
