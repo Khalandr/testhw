@@ -16,6 +16,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Ensure execute permission for Cypress binary
+        run: chmod +x $(npm bin)/cypress
+
+      - name: Check Cypress binary permissions
+        run: ls -l $(npm bin)/cypress
+
       - name: Run Cypress tests
         run: npx cypress run
 
