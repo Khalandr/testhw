@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        spec_file: ['spec.cy.js', 'spec1.cy.js', 'spec2.cy.js']
+        spec_file: ['cypress/e2e/spec.cy.js', 'cypress/e2e/spec1.cy.js', 'cypress/e2e/spec2.cy.js']
 
     steps:
       - name: Checkout
@@ -19,7 +19,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          spec: cypress/integration/${{ matrix.spec_file }}
+          spec: ${{ matrix.spec_file }}
+
 
 
 
